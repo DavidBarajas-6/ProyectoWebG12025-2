@@ -22,14 +22,14 @@ from django.http import HttpResponseRedirect
 
 def root_redirect(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect('/index')  # 👈 redirige al index
+        return HttpResponseRedirect('/index')
     else:
-        return HttpResponseRedirect('/login/')  # 👈 redirige al login
+        return HttpResponseRedirect('/login/') 
     
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(template_name='plan/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('', root_redirect, name='root_redirect'),  # 👈 controla si va a login o a index
+    path('', root_redirect, name='root_redirect'),  
     path('', include('plan.urls'))
 ]
