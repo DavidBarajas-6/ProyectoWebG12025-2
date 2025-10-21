@@ -1,0 +1,63 @@
+{% extends 'plan/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<title>Planes de comida</title>
+<link rel="stylesheet" href="{% static 'plan/css/menus.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<h1>Menús</h1>
+
+<div class="actions">
+    <a href="{% url 'nuevo' %}" class="btn-nuevo">Agregar plan</a>
+</div>
+
+{% for plan in plans %}
+<div class="plan-container">
+    <h2 class="plan-title">{{ plan.title }}</h2>
+
+    <p class="plan-meta">
+        {% if user.is_staff %}
+        Autor: {{ plan.author.username }} |
+        {% endif %}
+        Fecha: {{ plan.created_at|date:"d M Y H:i" }} |
+        Tipo: {{ plan.tipo.name|default:"Sin categoría" }}
+    </p>
+
+    <p class="plan-content">
+        {{ plan.content|truncatewords:50 }}
+    </p>
+
+    <div class="plan-details">
+        <p><strong>Realizado:</strong>
+            {% if plan.realizado %}
+            Sí
+            {% else %}
+            No
+            {% endif %}
+        </p>
+        <p><strong>Calorías totales:</strong> {{ plan.calorias_totales }}</p>
+
+        {% if plan.menu_set.all %}
+        <p><strong>Comidas incluidas:</strong></p>
+        <ul>
+            {% for menu in plan.menu_set.all %}
+            <li>{{ menu.comida.name }} — Cantidad: {{ menu.cantidad }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p><em>No hay comidas registradas para este plan.</em></p>
+        {% endif %}
+
+    </div>
+
+    <div class="plan-actions">
+        <a href="{% url 'editar' plan.id %}" class="btn-editar">✏️ Editar</a>
+        <a href="{% url 'borrar' plan.id %}" class="btn-eliminar">🗑️ Eliminar</a>
+    </div>
+</div>
+{% empty %}
+<p>No has creado ningún menú aún. ¡Ve y crea uno!</p>
+{% endfor %}
+{% endblock content %}

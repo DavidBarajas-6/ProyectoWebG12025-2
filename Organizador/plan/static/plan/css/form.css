@@ -1,0 +1,114 @@
+.form-container {
+    width: 50%;
+    margin: 60px auto;
+    padding: 30px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+h2 {
+    color: #303030;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    justify-content: flex-start;
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+button,
+.btn-eliminar,
+.btn-cancelar {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.3s ease;
+}
+
+button:hover,
+.btn-eliminar:hover,
+.btn-cancelar:hover {
+    transform: scale(1.05);
+}
+
+button {
+    background-color: #28a745;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#add-form {
+    background-color: #007bff;
+}
+
+#add-form:hover {
+    background-color: #0069d9;
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+}
+
+.btn-eliminar:hover {
+    background-color: #b52b27;
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+}
+
+.btn-cancelar:hover {
+    background-color: #5a6268;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}

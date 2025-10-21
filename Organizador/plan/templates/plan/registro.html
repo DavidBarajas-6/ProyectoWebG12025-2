@@ -1,0 +1,53 @@
+{% extends 'plan/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<title>Registro</title>
+<link rel="stylesheet" href="{% static 'plan/css/login.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="login-container">
+    <h1>Crear cuenta</h1>
+
+    <form method="POST" class="login-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_username">Nombre de usuario:</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+            <div class="error">{{ form.username.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_email">Correo electrónico:</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <div class="error">{{ form.email.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_password1">Contraseña:</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+            <div class="error">{{ form.password1.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_password2">Confirmar contraseña:</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+            <div class="error">{{ form.password2.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit">Registrarme</button>
+    </form>
+
+    <p>¿Ya tienes cuenta? <a class="registro" href="{% url 'login' %}">Inicia sesión</a></p>
+</div>
+{% endblock %}

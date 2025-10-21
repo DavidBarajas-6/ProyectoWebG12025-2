@@ -1,0 +1,20 @@
+{% extends 'plan/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<title>Eliminar plan</title>
+<link rel="stylesheet" href="{% static 'plan/css/form.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="form-container text-center">
+  <h2>Eliminar plan</h2>
+  <p>¿Seguro que deseas eliminar el plan <strong>"{{ plan.title }}"</strong>?</p>
+
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn-eliminar">Sí, eliminar</button>
+    <a href="{% url 'index' %}" class="btn-cancelar">Cancelar</a>
+  </form>
+</div>
+{% endblock content %}

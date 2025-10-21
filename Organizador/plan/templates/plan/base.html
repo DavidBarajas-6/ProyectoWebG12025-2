@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'plan/css/base.css' %}">
+    <link rel="icon" href="{% static 'plan/images/favicon.png' %}" type="image/png">
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+
+<body>
+    <main>
+        {% if user.is_authenticated %}
+        <header>
+            <h1>Planning out food BBC</h1>
+        </header>
+        {% endif %}
+        <nav id="navbar">
+            <ul>
+                {% if user.is_staff or user.is_superuser %}
+                <li><a href="{% url 'admin:index' %}">Administración</a></li>
+                {% endif %}
+            </ul>
+            <div>
+                {% if user.is_authenticated %}
+                <p><a>Hola, {{ user.username }}</a> | <a class="nav-link" href="#"
+                        onClick="document.getElementById('logoutform').submit()">
+                        Salir
+                    </a>
+                <form id="logoutform" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden">
+                </form>
+                </p>
+                {% endif %}
+            </div>
+        </nav>
+        <section class="page_content">
+            {% block content %}
+            {% endblock content %}
+        </section>
+    </main>
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+</body>
+
+</html>
